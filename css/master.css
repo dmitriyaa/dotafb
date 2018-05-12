@@ -12,7 +12,7 @@ h1 {
     justify-content: flex-start;
     align-items: center;
     max-width: 1200px;
-    min-height: 90vh;
+    min-height: calc(100vh - 50px);
     margin: 0 auto;
     padding-left: 1rem;
     padding-right: 1rem;
@@ -90,7 +90,7 @@ h1 {
     border-top: 2px solid #efefef;
     width: 90%;
     max-width: 600px;
-    min-height: 10vh;
+    min-height: 50px;
 }
 .extra-links {
     padding-top: 1rem;
@@ -103,12 +103,20 @@ h1 {
 .extra-links a:hover {
     color: #007bff;
 }
+
 .copyright {
+    margin-top: 1rem;
     text-align: center;
 }
 
 @media (max-width: 576px) {
     .copyright span {
         display: block;
+    }
+    .extra-link {
+        text-align: center;
+        display: block;
+        margin-top: .3rem;
+        margin-bottom: .3rem;
     }
 }
