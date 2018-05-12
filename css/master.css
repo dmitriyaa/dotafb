@@ -80,3 +80,7 @@ h1 {
     max-width: 140px;
     display: none;
 }
+
+.team-logo {
+    max-width: 100px;
+}

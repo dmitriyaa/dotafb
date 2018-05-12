@@ -5,9 +5,9 @@
 
 var Team = function( data ) {
     this.id = data.id;
-    this.team_name = '';
+    this.team = '';
     this.opposing_team_id = data.opposing_team_id;
-    this.opposing_team_name = '';
+    this.opposing_team = '';
     this.matches_amount_latest = data.matches_amount_latest;
     this.matches_amount_against_latest = data.matches_amount_against_latest;
     this.tournament_id = data.tournament_id;
@@ -25,8 +25,8 @@ var Team = function( data ) {
 Team.prototype.init = function() {
     var _this = this;
     var goNext = new Promise(function(resolve, reject){
-        _this.team_name = _this.getNameById(_this.id);
-        _this.opposing_team_name = _this.getNameById(_this.opposing_team_id);
+        _this.team = _this.getTeamById(_this.id);
+        _this.opposing_team = _this.getTeamById(_this.opposing_team_id);
         _this.init_matches_all();
         _this.init_matches_latest();
         _this.init_matches_against();
@@ -34,7 +34,7 @@ Team.prototype.init = function() {
         _this.init_matches_tournament();
 
         // purely gui thing
-        $('.status__container').append('<p><span class="status-' + _this.id + '"></span>/<span class="status_total-' + _this.id + '"></span> of ' + _this.team_name + ' matches successfully terminated.</p>');
+        $('.status__container').append('<p><span class="status-' + _this.id + '"></span>/<span class="status_total-' + _this.id + '"></span> of ' + _this.team.name + ' matches successfully terminated.</p>');
         var total_status = _this.matches_latest.length + _this.matches_against_latest.length + _this.matches_tournament.length;
         $('.status_total-' + _this.id).html(total_status);
 
@@ -45,7 +45,8 @@ Team.prototype.init = function() {
                     .then(function() {
                         _this.init_tournaments_matches_detailed()
                             .then(function() {
-                                html_log(_this.team_name + ' data has been successfully initialized.');
+                                html_log('<img class="team-logo" src="'+_this.team.logo_url+'">');
+                                html_log(_this.team.name + ' data has been successfully initialized.');
                                 resolve();
                             });
                     });
@@ -55,15 +56,15 @@ Team.prototype.init = function() {
 };
 
 /* Get team name by it's ID */
-Team.prototype.getNameById = function(id) {
-    var name = '';
+Team.prototype.getTeamById = function(id) {
+    var _team = '';
     teamsDB.forEach(function(team) {
         if (team.team_id === id) {
-            name = team.name;
+            _team = team;
             return false;
         }
     });
-    return name;
+    return _team;
 };
 
 /* Pulling all matches that team played (from Open Dota API) */
@@ -239,7 +240,7 @@ Team.prototype.calculateFBsAgainst = function() {
  */
  $('#calculate').on('click', function(event) {
      event.preventDefault();
-     $('.form').fadeOut(200);
+     $('.form').fadeOut();
      launch();
  });
  function launch() {
@@ -270,8 +271,8 @@ Team.prototype.calculateFBsAgainst = function() {
      team_a.init().then(function() {
          team_a.tournament_fbs = team_a.calculateFBs(team_a.matches_tournament);
          team_a.against_fbs = team_a.calculateFBsAgainst();
-         html_log(team_a.team_name + ' made ' + team_a.tournament_fbs + ' FBs in this tournamnet in last ' + team_a.matches_tournament.length + ' matches.');
-         html_log(team_a.team_name + ' made ' + team_a.against_fbs + ' FBs against ' + team_a.opposing_team_name + ' in last ' + team_a.matches_amount_against_latest + ' matches.');
+         html_log(team_a.team.name + ' made ' + team_a.tournament_fbs + ' FBs in this tournamnet in last ' + team_a.matches_tournament.length + ' matches.');
+         html_log(team_a.team.name + ' made ' + team_a.against_fbs + ' FBs against ' + team_a.opposing_team.name + ' in last ' + team_a.matches_amount_against_latest + ' matches.');
          html_log('---------------');
          html_log('\n');
 
@@ -279,8 +280,8 @@ Team.prototype.calculateFBsAgainst = function() {
              $('#loading').fadeOut();
              team_b.tournament_fbs = team_b.calculateFBs(team_b.matches_tournament);
              team_b.against_fbs = team_b.calculateFBsAgainst();
-             html_log(team_b.team_name + ' made ' + team_b.tournament_fbs + ' FBs in this tournamnet in last ' + team_b.matches_tournament.length + ' matches.');
-             html_log(team_b.team_name + ' made ' + team_b.against_fbs + ' FBs against ' + team_b.opposing_team_name + ' in last ' + team_b.matches_amount_against_latest + ' matches.');
+             html_log(team_b.team.name + ' made ' + team_b.tournament_fbs + ' FBs in this tournamnet in last ' + team_b.matches_tournament.length + ' matches.');
+             html_log(team_b.team.name + ' made ' + team_b.against_fbs + ' FBs against ' + team_b.opposing_team.name + ' in last ' + team_b.matches_amount_against_latest + ' matches.');
              html_log('---------------');
              html_log('\n');
              dr(team_a, team_b);
