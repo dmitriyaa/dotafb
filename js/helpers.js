@@ -19,8 +19,10 @@ var teamsDB = [];
 var teams_choises = [];
 getSyncJSON('https://api.opendota.com/api/teams', function(teams) {
     teams.forEach(function(team) {
-        teamsDB.push(team);
-        teams_choises.push(team.name);
+        if ( team.name !== 'team liquid' ) {
+            teamsDB.push(team);
+            teams_choises.push(team.name);
+        }
     });
     html_log('Teams DB is initialized.');
     html_log('---------------');

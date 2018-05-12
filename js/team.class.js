@@ -147,7 +147,7 @@ Team.prototype.init_matches_detailed = function(matches_list, matches_detailed_l
                     if (n+1 === matches_list.length) {
                         resolve(n);
                     }
-                }, 1200 * n);
+                }, 1350 * n);
             };
 
             for (var i = 0; i < matches_list.length; i++) {
