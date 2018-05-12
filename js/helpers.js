@@ -16,22 +16,48 @@ function getSyncJSON(url, callback) {
 
 // Globalb variable for list of all teams
 var teamsDB = [];
+var teams_choises = [];
 getSyncJSON('https://api.opendota.com/api/teams', function(teams) {
     teams.forEach(function(team) {
         teamsDB.push(team);
+        teams_choises.push(team.name);
     });
     html_log('Teams DB is initialized.');
     html_log('---------------');
 });
 
+var findTeamId = function( team_name ) {
+    var id = 0;
+    teamsDB.forEach(function(team) {
+        if (team.name === team_name) {
+            id = team.team_id;
+            return false;
+        }
+    });
+    return id;
+};
+
 var tournamentsDB = [];
+var tournament_choises = [];
 getSyncJSON('https://api.opendota.com/api/leagues', function(tournaments) {
     tournaments.forEach(function(tournament) {
         tournamentsDB.push(tournament);
+        tournament_choises.push(tournament.name);
     });
     html_log('Tournaments DB is initialized.');
     html_log('---------------');
 });
+
+var findTournamentId = function( tournament_name ) {
+    var id = 0;
+    tournamentsDB.forEach(function(tournament) {
+        if (tournament.name === tournament_name ) {
+            id = tournament.leagueid;
+            return false;
+        }
+    });
+    return id;
+};
 
 
 /* GUI */
@@ -42,11 +68,41 @@ function html_log( data ) {
     $('.console').append(log);
 }
 
-// set options in index
-teamsDB.forEach(function(team) {
-    var option = '<option value="' + team.team_id + '">' + team.name + '</option>';
-    $('#team_a').append(option);
-    $('#team_b').append(option);
+// Teams autocompletes
+$('#team_a').autoComplete({
+    minChars: 1,
+    source: function(term, suggest){
+        term = term.toLowerCase();
+        var choices = teams_choises;
+        var matches = [];
+        for (i=0; i<choices.length; i++)
+            if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
+        suggest(matches);
+    }
+});
+$('#team_b').autoComplete({
+    minChars: 1,
+    source: function(term, suggest){
+        term = term.toLowerCase();
+        var choices = teams_choises;
+        var matches = [];
+        for (i=0; i<choices.length; i++)
+            if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
+        suggest(matches);
+    }
+});
+
+// Tournaments autocomplete
+$('#tournament_id').autoComplete({
+    minChars: 1,
+    source: function(term, suggest){
+        term = term.toLowerCase();
+        var choices = tournament_choises;
+        var matches = [];
+        for (i=0; i<choices.length; i++)
+            if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
+        suggest(matches);
+    }
 });
 
 

@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./css/jquery.auto-complete.css">
         <link rel="stylesheet" href="./css/master.css?v=1.1">
     </head>
     <body>
@@ -23,15 +24,11 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputEmail4">Team A</label>
-                    <select class="custom-select mr-sm-2" id="team_a">
-                        <option selected>Choose...</option>
-                    </select>
+                    <input type="text" class="form-control" id="team_a" placeholder="Team A">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Team B</label>
-                    <select class="custom-select mr-sm-2" id="team_b">
-                        <option selected>Choose...</option>
-                    </select>
+                    <input type="text" class="form-control" id="team_b" placeholder="Team B">
                 </div>
                 <div class="form-group col-md-12">
                     <a href="./teams.html" target="blank">all teams list</a>
@@ -60,6 +57,7 @@
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous">
     </script>
+    <script src="./js/jquery.auto-complete.min.js"></script>
     <script src="./js/helpers.js"></script>
     <script src="./js/team.class.js"></script>
     </body>

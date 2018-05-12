@@ -244,11 +244,11 @@ Team.prototype.calculateFBsAgainst = function() {
  });
  function launch() {
      // ipt = input
-     var team_a_ipt = parseInt($('#team_a').val());
-     var team_b_ipt = parseInt($('#team_b').val());
+     var team_a_ipt =  findTeamId( $('#team_a').val() );
+     var team_b_ipt = findTeamId( $('#team_b').val() );
      var matches_amount_latest_ipt = parseInt($('#matches_amount_latest').val());
      var matches_amount_against_latest_ipt = parseInt($('#matches_amount_against_latest').val());
-     var tournament_id_ipt = parseInt($('#tournament_id').val());
+     var tournament_id_ipt = findTeamId( $('#tournament_id').val() );
 
      var team_a = new Team({
                              id: team_a_ipt,
