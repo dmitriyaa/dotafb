@@ -148,6 +148,6 @@ var dr = function(team_al, team_be) {
     a_dr = Math.round(a_dr * 100) / 100;
     var b_dr = 100 - a_dr;
 
-    html_log('<span class="result_team_a">' + team_al.team_name + '</span>' + '/' + '<span class="result_team_b">' + team_be.team_name + '</span>');
+    html_log('<span class="result_team_a">' + team_al.team.name + '</span>' + '/' + '<span class="result_team_b">' + team_be.team.name + '</span>');
     html_log('<span class="result_team_a">' + a_dr + '</span>' + '/'  + '<span class="result_team_b">' + b_dr + '</span>');
 };
