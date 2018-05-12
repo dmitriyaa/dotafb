@@ -248,7 +248,7 @@ Team.prototype.calculateFBsAgainst = function() {
      var team_b_ipt = findTeamId( $('#team_b').val() );
      var matches_amount_latest_ipt = parseInt($('#matches_amount_latest').val());
      var matches_amount_against_latest_ipt = parseInt($('#matches_amount_against_latest').val());
-     var tournament_id_ipt = findTeamId( $('#tournament_id').val() );
+     var tournament_id_ipt = findTournamentId( $('#tournament_id').val() );
 
      var team_a = new Team({
                              id: team_a_ipt,
