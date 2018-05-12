@@ -243,6 +243,8 @@ Team.prototype.calculateFBsAgainst = function() {
      launch();
  });
  function launch() {
+     // GUI
+     $('#loading').fadeIn();
      // ipt = input
      var team_a_ipt =  findTeamId( $('#team_a').val() );
      var team_b_ipt = findTeamId( $('#team_b').val() );
@@ -274,6 +276,7 @@ Team.prototype.calculateFBsAgainst = function() {
          html_log('\n');
 
          team_b.init().then(function() {
+             $('#loading').fadeOut();
              team_b.tournament_fbs = team_b.calculateFBs(team_b.matches_tournament);
              team_b.against_fbs = team_b.calculateFBsAgainst();
              html_log(team_b.team_name + ' made ' + team_b.tournament_fbs + ' FBs in this tournamnet in last ' + team_b.matches_tournament.length + ' matches.');

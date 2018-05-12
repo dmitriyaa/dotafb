@@ -43,6 +43,7 @@ h1 {
     border-radius: 10px;
     background: #efefef;
     color: #141414;
+    border: 5px solid #ad2e15
 }
 
 #calculate {
@@ -51,7 +52,7 @@ h1 {
     margin-bottom: 2rem;
     padding: 10px;
     border-radius: 4px;
-    background: #007bff;
+    background: #ad2e15;
     color: #efefef;
     text-decoration: none;
 }
@@ -68,4 +69,14 @@ h1 {
 .result_team_b {
     color: #dc3545;
     font-size: 1.5rem;
+}
+
+.logo {
+    max-width: 50px;
+    margin-right: 10px;
+}
+
+#loading {
+    max-width: 140px;
+    display: none;
 }
