@@ -12,7 +12,7 @@ h1 {
     justify-content: flex-start;
     align-items: center;
     max-width: 1200px;
-    min-height: 100vh;
+    min-height: 90vh;
     margin: 0 auto;
     padding-left: 1rem;
     padding-right: 1rem;
@@ -31,7 +31,7 @@ h1 {
 .form {
     width: 100%;
     max-width: 600px;
-    margin-top: 4rem;
+    margin-top: 1rem;
 }
 .status__container {
     margin-bottom: .5rem;
@@ -39,6 +39,7 @@ h1 {
 .console {
     width: 100%;
     max-width: 600px;
+    margin-bottom: 2rem;
     padding: 16px;
     border-radius: 10px;
     background: #efefef;
@@ -83,4 +84,31 @@ h1 {
 
 .team-logo {
     max-width: 100px;
+}
+
+.footer {
+    border-top: 2px solid #efefef;
+    width: 90%;
+    max-width: 600px;
+    min-height: 10vh;
+}
+.extra-links {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.extra-links a {
+    margin-left: .5rem;
+    margin-right: .5rem;
+}
+.extra-links a:hover {
+    color: #007bff;
+}
+.copyright {
+    text-align: center;
+}
+
+@media (max-width: 576px) {
+    .copyright span {
+        display: block;
+    }
 }
