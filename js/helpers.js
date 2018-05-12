@@ -145,6 +145,7 @@ var dr = function(team_al, team_be) {
     var b_success_against_ratge = 100 - a_success_against_rate;
 
     var a_dr = (a_success_tournament_rate_dr * 0.57) + (a_success_against_rate * 0.47);
+    a_dr = Math.round(a_dr * 100) / 100;
     var b_dr = 100 - a_dr;
 
     html_log('<span class="result_team_a">' + team_al.team_name + '</span>' + '/' + '<span class="result_team_b">' + team_be.team_name + '</span>');
