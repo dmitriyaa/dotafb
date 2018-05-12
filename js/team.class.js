@@ -246,7 +246,8 @@ Team.prototype.calculateFBsAgainst = function() {
      // ipt = input
      var team_a_ipt =  findTeamId( $('#team_a').val() );
      var team_b_ipt = findTeamId( $('#team_b').val() );
-     var matches_amount_latest_ipt = parseInt($('#matches_amount_latest').val());
+     // var matches_amount_latest_ipt = parseInt($('#matches_amount_latest').val());
+     var matches_amount_latest_ipt = 0;
      var matches_amount_against_latest_ipt = parseInt($('#matches_amount_against_latest').val());
      var tournament_id_ipt = findTournamentId( $('#tournament_id').val() );
 
@@ -267,7 +268,7 @@ Team.prototype.calculateFBsAgainst = function() {
      team_a.init().then(function() {
          team_a.tournament_fbs = team_a.calculateFBs(team_a.matches_tournament);
          team_a.against_fbs = team_a.calculateFBsAgainst();
-         html_log(team_a.team_name + ' made ' + team_a.tournament_fbs + ' FBs in general in last ' + team_a.matches_tournament.length + ' matches.');
+         html_log(team_a.team_name + ' made ' + team_a.tournament_fbs + ' FBs in this tournamnet in last ' + team_a.matches_tournament.length + ' matches.');
          html_log(team_a.team_name + ' made ' + team_a.against_fbs + ' FBs against ' + team_a.opposing_team_name + ' in last ' + team_a.matches_amount_against_latest + ' matches.');
          html_log('---------------');
          html_log('\n');
@@ -275,7 +276,7 @@ Team.prototype.calculateFBsAgainst = function() {
          team_b.init().then(function() {
              team_b.tournament_fbs = team_b.calculateFBs(team_b.matches_tournament);
              team_b.against_fbs = team_b.calculateFBsAgainst();
-             html_log(team_b.team_name + ' made ' + team_b.tournament_fbs + ' FBs in general in last ' + team_b.matches_tournament.length + ' matches.');
+             html_log(team_b.team_name + ' made ' + team_b.tournament_fbs + ' FBs in this tournamnet in last ' + team_b.matches_tournament.length + ' matches.');
              html_log(team_b.team_name + ' made ' + team_b.against_fbs + ' FBs against ' + team_b.opposing_team_name + ' in last ' + team_b.matches_amount_against_latest + ' matches.');
              html_log('---------------');
              html_log('\n');
