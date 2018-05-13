@@ -240,6 +240,7 @@ Team.prototype.calculateFBsAgainst = function() {
  */
  $('#calculate').on('click', function(event) {
      event.preventDefault();
+     $(this).css('display', 'none');
      $('.form').fadeOut();
      launch();
  });
