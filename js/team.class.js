@@ -269,6 +269,7 @@ Team.prototype.calculateFBsAgainst = function() {
                               tournament_id: tournament_id_ipt,
                            });
      team_a.init().then(function() {
+         $('#loading').attr('src', './images/loading1.1.gif');
          team_a.tournament_fbs = team_a.calculateFBs(team_a.matches_tournament);
          team_a.against_fbs = team_a.calculateFBsAgainst();
          html_log(team_a.team.name + ' made ' + team_a.tournament_fbs + ' FBs in this tournamnet in last ' + team_a.matches_tournament.length + ' matches.');
