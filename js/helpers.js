@@ -28,14 +28,17 @@ getSyncJSON('https://api.opendota.com/api/teams', function(teams) {
     html_log('---------------');
 });
 
+// In case there are 2 teams with the same name,
+// the first one will be selected because it has more DCP points
+// in case you really need the second team, type id:123123 in input
 var findTeamId = function( team_name ) {
     var id = 0;
-    teamsDB.forEach(function(team) {
-        if (team.name === team_name) {
-            id = team.team_id;
-            return false;
+    for (var i = 0; i < teamsDB.length; i++) {
+        if (teamsDB[i].name === team_name) {
+            id = teamsDB[i].team_id;
+            return id;
         }
-    });
+    }
     return id;
 };
 

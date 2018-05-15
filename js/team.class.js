@@ -248,8 +248,22 @@ Team.prototype.calculateFBsAgainst = function() {
      // GUI
      $('#loading').fadeIn();
      // ipt = input
-     var team_a_ipt =  findTeamId( $('#team_a').val() );
-     var team_b_ipt = findTeamId( $('#team_b').val() );
+        // There are some cases when there are 2 teams with the same name.
+        // Temporary fix, is to allow user to input ID.
+        var team_a_ipt;
+        if ( $('#team_a').val().startsWith('id:') ) {
+            team_a_ipt = parseInt( $('#team_a').val().slice(3) );
+        } else {
+            team_a_ipt = findTeamId( $('#team_a').val() );
+        }
+
+        var team_b_ipt;
+        if ( $('#team_b').val().startsWith('id:') ) {
+            team_b_ipt = parseInt( $('#team_b').val().slice(3) );
+        } else {
+            team_b_ipt = findTeamId( $('#team_b').val() );
+        }
+
      // var matches_amount_latest_ipt = parseInt($('#matches_amount_latest').val());
      var matches_amount_latest_ipt = 1;
      var matches_amount_against_latest_ipt = parseInt($('#matches_amount_against_latest').val());
@@ -270,6 +284,9 @@ Team.prototype.calculateFBsAgainst = function() {
                               tournament_id: tournament_id_ipt,
                            });
      team_a.init().then(function() {
+         console.log('Team A ' + team_a.team.name);
+         console.log('Team A ' + team_a.id);
+         console.log('Tournament ID' + team_a.tournament_id);
          $('#loading').attr('src', './images/loading1.1.gif');
          team_a.tournament_fbs = team_a.calculateFBs(team_a.matches_tournament);
          team_a.against_fbs = team_a.calculateFBsAgainst();
